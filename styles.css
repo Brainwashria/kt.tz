@@ -1,0 +1,100 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-family: 'Roboto', sans-serif;
+  vertical-align: baseline;
+}
+#todoList {
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  border-radius: 5px;
+  margin: 30px;
+  width: 350px;
+  min-height: 400px;
+  background: #E0E3E6;
+}
+#todoList .header {
+  margin: 0 0 5px 0;
+  display: flex;
+  justify-content: space-between;
+}
+#todoList .header h1 {
+  margin: 5px 0 0 5px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #243849;
+}
+#todoList .header #sortingButton {
+  width: 30px;
+  height: 30px;
+  background-image: url("img/icons/import_export_24px_outlined.svg");
+  background-size: contain;
+  background-color: transparent;
+}
+#todoList textarea {
+  box-sizing: border-box;
+  align-self: center;
+  margin: 0 0 15px 0;
+  width: 100%;
+  min-height: 95px;
+  resize: none;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 18px;
+  font-weight: 500;
+  text-align: justify;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+}
+#todoList #AddCard {
+  margin: 0 0 5px 0;
+  color: #fff;
+  font-weight: 500;
+  font-size: 20px;
+  padding: 10px;
+  height: 45px;
+  width: 115px;
+  background-color: #7CA65C;
+  border-radius: 5px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.61);
+}
+#todoList #todoUl {
+  list-style-type: none;
+}
+#todoList #todoUl .taskList {
+  overflow: hidden;
+  font-size: 20px;
+  margin: 10px 0 10px 0;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+  min-height: 40px;
+  background-color: #FFFFFF;
+  box-sizing: border-box;
+  padding: 10px;
+  width: 100%;
+  border-radius: 4px;
+  color: #243849;
+  font-weight: 500;
+}
+#todoList .buttonsDiv {
+  display: flex;
+  flex-direction: row-reverse;
+  margin: 10px 0 10px 0;
+}
+#todoList .buttonsDiv #prevPage {
+  background-image: url("img/icons/rightarrow.svg");
+  background-color: transparent;
+  height: 25px;
+  width: 25px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+#todoList .buttonsDiv #nextPage {
+  background-image: url("img/icons/leftarrow.svg");
+  height: 25px;
+  width: 25px;
+  background-color: transparent;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+/*# sourceMappingURL=styles.css.map */

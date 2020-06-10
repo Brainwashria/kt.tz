@@ -63,6 +63,8 @@
   list-style-type: none;
 }
 #todoList #todoUl .taskList {
+  display: flex;
+  justify-content: space-between;
   overflow: hidden;
   font-size: 20px;
   margin: 10px 0 10px 0;
@@ -75,6 +77,25 @@
   border-radius: 4px;
   color: #243849;
   font-weight: 500;
+}
+#todoList #todoUl .taskList #tasksButtonsDiv {
+  display: none;
+}
+#todoList #todoUl .taskList #tasksButtonsDiv .tasksButtons {
+  width: 18px;
+  height: 18px;
+  background-color: transparent;
+  background-size: contain;
+  margin-right: 10px;
+}
+#todoList #todoUl .taskList #tasksButtonsDiv .deleteButton {
+  background-image: url("img/icons/deletebutton.svg");
+}
+#todoList #todoUl .taskList #tasksButtonsDiv .editButton {
+  background-image: url("img/icons/editbutton.svg");
+}
+#todoList #todoUl .taskList:hover {
+  background-color: #F5F6F7;
 }
 #todoList .buttonsDiv {
   display: flex;

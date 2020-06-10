@@ -62,6 +62,8 @@
   #todoUl {
     list-style-type: none;
     .taskList {
+      display: flex;
+      justify-content: space-between;
       overflow: hidden;
       font-size: 20px;
       margin: 10px 0 10px 0;
@@ -74,7 +76,29 @@
       border-radius: 4px;
       color: #243849;
       font-weight: 500;
+      //для кнопок внутри задач, создаются при эвенте
+      #tasksButtonsDiv {
+        display:none;
+        .tasksButtons {
+          width: 18px;
+          height: 18px;
+          background-color: transparent;
+          background-size: contain;
+          margin-right: 10px;
+        }
+        .deleteButton {
+          background-image: url("img/icons/deletebutton.svg");
+        }
+        .editButton {
+          background-image: url("img/icons/editbutton.svg")
+        }
+      }
+
+      &:hover {
+        background-color: #F5F6F7;
+      }
     }
+
     }
   .buttonsDiv {
     display: flex;

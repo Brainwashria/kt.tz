@@ -78,6 +78,21 @@
   color: #243849;
   font-weight: 500;
 }
+#todoList #todoUl .taskList .firstColumn .checkbox {
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  border-radius: 50%;
+  vertical-align: middle;
+  border: 1px solid #ddd;
+  -webkit-appearance: none;
+  outline: none;
+  cursor: pointer;
+  margin-right: 15px;
+}
+#todoList #todoUl .taskList .firstColumn .checkbox:checked {
+  background-color: #7CA65C;
+}
 #todoList #todoUl .taskList #tasksButtonsDiv {
   display: none;
 }
@@ -103,7 +118,7 @@
   margin: 10px 0 10px 0;
 }
 #todoList .buttonsDiv #prevPage {
-  background-image: url("img/icons/rightarrow.svg");
+  background-image: url("img/icons/leftarrow.svg");
   background-color: transparent;
   height: 25px;
   width: 25px;
@@ -111,7 +126,7 @@
   background-repeat: no-repeat;
 }
 #todoList .buttonsDiv #nextPage {
-  background-image: url("img/icons/leftarrow.svg");
+  background-image: url("img/icons/rightarrow.svg");
   height: 25px;
   width: 25px;
   background-color: transparent;

@@ -61,7 +61,6 @@ sortingButton.onclick = function() {
 todoUl.onmouseover = function(event) {
     let target = event.target;
     if(target.tagName !== 'LI') return
-    let li = target.closest('li');
     let buttonsDiv = target.lastChild;
     buttonsDiv.style.display = 'block'
 }
@@ -69,7 +68,6 @@ todoUl.onmouseover = function(event) {
 todoUl.onmouseout = function(event) {
     let target = event.target;
     if(target.tagName !== 'LI') return
-    let li = target.closest('li');
     if (!event.relatedTarget) return;
     let isOnChildDiv = event.relatedTarget.classList.contains('firstColumn');
     let isOnActionsButtons = event.relatedTarget.tagName === 'BUTTON' && target.tagName === 'LI';
@@ -119,9 +117,7 @@ function deleteTusk(event) {
     console.log(liId);
     for(let record of json.records) {
         if(liId === record.timestamp.toString()) {
-            console.log(json.records.indexOf(record));
             json.records.splice(json.records.indexOf(record), 1);
-            console.log(json.records);
             event.target.parentNode.parentNode.remove();
             localStorage.setItem('user', JSON.stringify(json));
         }

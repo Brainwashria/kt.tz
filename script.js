@@ -12,7 +12,7 @@ const limitOfRecordsOnPage = 5;
 function createNewTask() {
     let taskValue = textarea.value;
     if(!taskValue) return;
-    todoUl.insertAdjacentHTML('beforeend', `<li data-id="${Date.now()}" class="taskList"><div class="firstColumn"><input type="checkbox" class="checkbox">${taskValue}</div><div id="tasksButtonsDiv"><button class="editButton tasksButtons"></button><button class="deleteButton tasksButtons"></button></div></li>`)
+    todoUl.insertAdjacentHTML('beforeend', `<li data-id="${Date.now()}" class="taskList"><div class="firstColumn"><input type="checkbox" class="checkbox"><span>${taskValue}</span></div><div id="tasksButtonsDiv"><button class="editButton tasksButtons"></button><button class="deleteButton tasksButtons"></button></div></li>`)
     json.records.push({text: `${taskValue}`, timestamp: Date.now(), isChecked: false});
     textarea.value = '';
     localStorage.setItem('user', JSON.stringify(json));
@@ -40,7 +40,6 @@ prevButton.onclick = function() {
     console.log('test')
     if (page === 1) return;
     page -= 1;
-    console.log(page);
     clearing()
     renderLocalstorageJson(page);
 }
@@ -48,7 +47,6 @@ prevButton.onclick = function() {
 nextButton.onclick = function() {
     console.log('test')
     page += 1;
-    console.log(page);
     clearing()
     renderLocalstorageJson(page);
 }
@@ -96,16 +94,21 @@ todoUl.onclick = function(event) {
     }
     if(target.tagName === 'INPUT') {
         let liId = event.target.parentNode.parentNode.dataset.id;
+        let span = event.target.parentNode.childNodes[1];
         for(let record of json.records) {
             if(liId === record.timestamp.toString()) {
+
                 let status = record.isChecked ? false : true;
-                console.log(status)
                 record.isChecked = status;
+                if(status) {
+                    span.style.textDecoration = 'line-through';
+                } else {
+                    span.style.textDecoration = '';
+                }
+
             }
         }
         localStorage.setItem('user', JSON.stringify(json));
-
-        console.log(liId)
     }
 }
 
@@ -143,34 +146,12 @@ function renderLocalstorageJson(page) {
     json = storageFile
     let amountOfRecords = limitOfRecordsOnPage * page;
     let records = storageFile.records.slice(amountOfRecords - limitOfRecordsOnPage, amountOfRecords)
-    console.log(records);
     for(let record of records) {
         if(record.isChecked === true) {
-            todoUl.insertAdjacentHTML('beforeend', `<li data-id = '${record.timestamp}' class="taskList"><div class="firstColumn"><input type="checkbox" class="checkbox" checked>${record.text}</div><div id="tasksButtonsDiv"><button class="editButton tasksButtons"></button><button class="deleteButton tasksButtons"></button></div></li>`)
+            todoUl.insertAdjacentHTML('beforeend', `<li data-id = '${record.timestamp}' class="taskList"><div class="firstColumn"><input type="checkbox" class="checkbox" checked><span style="text-decoration: line-through">${record.text}</span></div><div id="tasksButtonsDiv"><button class="editButton tasksButtons"></button><button class="deleteButton tasksButtons"></button></div></li>`)
 
         } else {
-            todoUl.insertAdjacentHTML('beforeend', `<li data-id = '${record.timestamp}' class="taskList"><div class="firstColumn"><input type="checkbox" class="checkbox">${record.text}</div><div id="tasksButtonsDiv"><button class="editButton tasksButtons"></button><button class="deleteButton tasksButtons"></button></div></li>`)
-        }
-    }
-}
-
-function renderLocalstorageJson2() {
-    let storageFile = JSON.parse(localStorage.getItem('user'));
-    if(!storageFile) return
-    json = storageFile
-
-    let params = (new URL(document.location)).searchParams;
-    let page = params.get("page") || 1;
-
-    let endJsonElem = limitOfRecordsOnPage * page
-    const records = storageFile.records.slice(endJsonElem - limitOfRecordsOnPage, endJsonElem);
-
-    for(let record of records) {
-        if(record.isChecked === true) {
-            todoUl.insertAdjacentHTML('beforeend', `<li data-id = '${record.timestamp}' class="taskList"><div class="firstColumn"><input type="checkbox" class="checkbox" checked>${record.text}</div><div id="tasksButtonsDiv"><button class="editButton tasksButtons"></button><button class="deleteButton tasksButtons"></button></div></li>`)
-
-        } else {
-            todoUl.insertAdjacentHTML('beforeend', `<li data-id = '${record.timestamp}' class="taskList"><div class="firstColumn"><input type="checkbox" class="checkbox">${record.text}</div><div id="tasksButtonsDiv"><button class="editButton tasksButtons"></button><button class="deleteButton tasksButtons"></button></div></li>`)
+            todoUl.insertAdjacentHTML('beforeend', `<li data-id = '${record.timestamp}' class="taskList"><div class="firstColumn"><input type="checkbox" class="checkbox"><span>${record.text}</span></div><div id="tasksButtonsDiv"><button class="editButton tasksButtons"></button><button class="deleteButton tasksButtons"></button></div></li>`)
         }
     }
 }

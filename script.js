@@ -12,10 +12,12 @@ const limitOfRecordsOnPage = 5;
 function createNewTask() {
     let taskValue = textarea.value;
     if(!taskValue) return;
-    todoUl.insertAdjacentHTML('beforeend', `<li data-id="${Date.now()}" class="taskList"><div class="firstColumn"><input type="checkbox" class="checkbox"><span>${taskValue}</span></div><div id="tasksButtonsDiv"><button class="editButton tasksButtons"></button><button class="deleteButton tasksButtons"></button></div></li>`)
     json.records.push({text: `${taskValue}`, timestamp: Date.now(), isChecked: false});
     textarea.value = '';
     localStorage.setItem('user', JSON.stringify(json));
+    let li = document.querySelectorAll('li');
+    if(li.length >= limitOfRecordsOnPage) return;
+    todoUl.insertAdjacentHTML('beforeend', `<li data-id="${Date.now()}" class="taskList"><div class="firstColumn"><input type="checkbox" class="checkbox"><span>${taskValue}</span></div><div id="tasksButtonsDiv"><button class="editButton tasksButtons"></button><button class="deleteButton tasksButtons"></button></div></li>`)
 }
 
 const textarea = document.querySelector('textarea');
@@ -37,7 +39,6 @@ function clearing() {
 }
 
 prevButton.onclick = function() {
-    console.log('test')
     if (page === 1) return;
     page -= 1;
     clearing()
@@ -115,12 +116,14 @@ todoUl.onclick = function(event) {
 //функция удаления
 function deleteTusk(event) {
     let liId = event.target.parentNode.parentNode.dataset.id;
+    console.log(liId);
     for(let record of json.records) {
         if(liId === record.timestamp.toString()) {
-            json.records.splice(record, 1);
-            localStorage.setItem('user', JSON.stringify(json));
+            console.log(json.records.indexOf(record));
+            json.records.splice(json.records.indexOf(record), 1);
             console.log(json.records);
             event.target.parentNode.parentNode.remove();
+            localStorage.setItem('user', JSON.stringify(json));
         }
     }
 
